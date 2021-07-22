@@ -1,0 +1,13 @@
+
+{% include 'header.html' %}
+
+<body>
+    <main>
+        <p>
+        {% for article in articles %}
+            {{ article.title }},
+        {% endfor %}
+        </p>
+    </main>
+</body>
+</html>
