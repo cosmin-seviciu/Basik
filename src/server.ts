@@ -17,11 +17,11 @@ export class Server {
 
   public createServer(): void {
     this.app.get('/', (req, res) => {
-      articleService.getArticles().then((articles) => {
-        this.twing.render('index.html', { articles }).then((output) => {
+      this.twing
+        .render('index.html', { articles: articleService.articles })
+        .then((output) => {
           res.end(output);
         });
-      });
     });
 
     this.app.listen(this.port, () => {

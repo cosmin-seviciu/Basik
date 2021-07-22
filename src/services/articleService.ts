@@ -2,27 +2,46 @@ import { ArticleModel } from '../models/articleModel';
 import * as fs from 'fs';
 
 class ArticleService {
-  private articles: ArticleModel[] = [];
+  private _articles: ArticleModel[] = [];
 
-  constructor() {
-    setInterval(() => {}, 10000);
+  public get articles(): ArticleModel[] {
+    return this._articles;
   }
 
-  public getArticles() {
-    return new Promise((res, rej) => {
-      fs.readdir('./articles', (err, files) => {
-        files.forEach((file) => {
-          const foundArticle = this.articles.find(
-            (article) => article.title === file
-          );
-          if (foundArticle) {
-          }
-          tmpArticle.push(new ArticleModel(file, ''));
-        });
-        this.articles = tmpArticle;
-        res(tmpArticle);
-      });
+  private set articles(articles: ArticleModel[]) {
+    this._articles = articles;
+  }
+
+  constructor() {
+    this.refeshArticles();
+    setInterval(() => {
+      this.refeshArticles();
+    }, 600000);
+  }
+
+  private refeshArticles(): void {
+    const articles = fs.readdirSync('./articles');
+    const tempArticles: ArticleModel[] = [];
+    articles.forEach((element: string) => {
+      const filePath = `./articles/${element}/index.md`;
+      const foundArticle = this.articles.find(
+        (article) => article.title === element
+      );
+      if (foundArticle) {
+        const stats = fs.statSync(filePath);
+        if (stats.mtimeMs != foundArticle.mtime) {
+          const content = fs.readFileSync(filePath, 'utf8');
+          foundArticle.content = content;
+          foundArticle.mtime = stats.mtimeMs;
+        }
+        tempArticles.push(foundArticle);
+      } else {
+        const stats = fs.statSync(filePath);
+        const content = fs.readFileSync(filePath, 'utf8');
+        tempArticles.push(new ArticleModel(element, content, stats.mtimeMs));
+      }
     });
+    this.articles = tempArticles;
   }
 }
 

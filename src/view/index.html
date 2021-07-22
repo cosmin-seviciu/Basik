@@ -5,7 +5,8 @@
     <main>
         <p>
         {% for article in articles %}
-            {{ article.title }},
+            <div>{{ article.title }}</div>
+            <div>{{ article.content }},</div>
         {% endfor %}
         </p>
     </main>

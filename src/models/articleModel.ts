@@ -1,6 +1,7 @@
 export class ArticleModel {
   constructor(
-    public readonly title: string = '',
-    public readonly content: string = ''
+    public title: string = '',
+    public content: string = '',
+    public mtime: number = 0
   ) {}
 }
