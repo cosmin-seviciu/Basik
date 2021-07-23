@@ -1,6 +1,7 @@
 import express from 'express';
 import { TwingEnvironment, TwingLoaderFilesystem } from 'twing';
 import { articleService } from './services/articleService';
+import { fetchRepoService } from './services/fetchRepoService';
 
 export class Server {
   private port: number;
@@ -13,6 +14,7 @@ export class Server {
     this.port = 5000;
     this.loader = new TwingLoaderFilesystem('./src/view');
     this.twing = new TwingEnvironment(this.loader);
+    fetchRepoService.getArticlesRepo();
   }
 
   public createServer(): void {
