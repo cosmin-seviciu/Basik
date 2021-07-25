@@ -30,7 +30,7 @@ export class Server {
       });
 
       this.app.listen(this.port, () => {
-        console.log('http://localhost:5000/');
+        console.log('server running on http://localhost:5000/');
       });
     });
   }
