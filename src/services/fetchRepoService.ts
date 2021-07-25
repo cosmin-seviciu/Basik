@@ -20,7 +20,7 @@ class FetchRepoService {
     }, 3600000);
   }
 
-  getArticlesRepo() {
+  public getArticlesRepo() {
     const localFiles = fs.readdirSync('./');
 
     if (!localFiles.find((file) => file === this.remoteRepoName)) {

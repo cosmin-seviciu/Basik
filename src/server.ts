@@ -18,6 +18,8 @@ export class Server {
   }
 
   public createServer(): void {
+    this.app.use(express.static(__dirname + '/public'));
+
     this.app.get('/', (req, res) => {
       this.twing
         .render('index.html', { articles: articleService.articles })

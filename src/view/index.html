@@ -1,14 +1,10 @@
 
 {% include 'header.html' %}
-
-<body>
     <main>
         <p>
         {% for article in articles %}
-            <div>{{ article.title }}</div>
             <div>{{ article.content|raw }},</div>
         {% endfor %}
         </p>
     </main>
-</body>
-</html>
+{% include 'footer.html' %}
