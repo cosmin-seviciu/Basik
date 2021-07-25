@@ -17,7 +17,9 @@ class ArticleService {
 
   constructor() {
     this.converter = new showdown.Converter();
+  }
 
+  public init() {
     this.refeshArticles();
     setInterval(() => {
       this.refeshArticles();

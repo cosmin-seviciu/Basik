@@ -20,16 +20,18 @@ class FetchRepoService {
     }, 3600000);
   }
 
-  public getArticlesRepo() {
-    const localFiles = fs.readdirSync('./');
+  public getArticlesRepo(): Promise<any> {
+    return new Promise((res, rej) => {
+      const localFiles = fs.readdirSync('./');
 
-    if (!localFiles.find((file) => file === this.remoteRepoName)) {
-      console.log('get repo');
-      this.git.clone(this.remoteRepo);
-    } else {
-      console.log('get pull');
-      this.git.pull();
-    }
+      if (!localFiles.find((file) => file === this.remoteRepoName)) {
+        console.log('get repo');
+        res(this.git.clone(this.remoteRepo));
+      } else {
+        console.log('get pull');
+        res(this.git.pull());
+      }
+    });
   }
 }
 
