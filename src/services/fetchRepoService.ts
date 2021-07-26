@@ -25,10 +25,10 @@ class FetchRepoService {
       const localFiles = fs.readdirSync('./');
 
       if (!localFiles.find((file) => file === this.remoteRepoName)) {
-        console.log(`git clone ${this.remoteRepoName} from ${this.remoteRepo}`);
+        console.log(`git clone ${this.remoteRepo}`);
         res(this.git.clone(this.remoteRepo));
       } else {
-        console.log(`git pull ${this.remoteRepoName} from ${this.remoteRepo}`);
+        console.log(`git pull ${this.remoteRepo}`);
         res(this.git.pull());
       }
     });
