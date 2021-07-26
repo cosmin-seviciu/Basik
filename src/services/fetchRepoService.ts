@@ -22,6 +22,15 @@ class FetchRepoService {
 
   public getArticlesRepo(): Promise<any> {
     return new Promise((res, rej) => {
+      console.log(config.dev)
+      if (config.dev) {
+        console.log("------------------------------------------------------------------------------------")
+        console.log("Skipping article repo fetch, to fetch the repo set dev to false in basik.config.json")
+        console.log("------------------------------------------------------------------------------------")
+        res(true)
+        return;
+
+      }
       const localFiles = fs.readdirSync('./');
 
       if (!localFiles.find((file) => file === this.remoteRepoName)) {
