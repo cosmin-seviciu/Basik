@@ -199,6 +199,8 @@ THE SOFTWARE. */
     font-style: italic;
     margin: 1rem auto 1rem;
     max-width: 48rem;
+    border-left: 5px solid #444444;
+    padding-left: 1rem;
   }
   
   li {

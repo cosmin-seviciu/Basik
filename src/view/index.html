@@ -1,11 +1,9 @@
 
-{% include 'header.html' %}
+{% include 'partials/header.html' %}
 {% include 'partials/nav.html' %}
-    <article>
-        <p>
+    <main>
         {% for article in articles %}
-            <div>{{ article.content|raw }},</div>
+            <div>{{ article.readableTitle}}</div>
         {% endfor %}
-        </p>
-    </article>
-{% include 'footer.html' %}
+    </main>
+{% include 'partials/footer.html' %}

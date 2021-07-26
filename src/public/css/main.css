@@ -1,3 +1,8 @@
+
+:root {
+    --main-text-color: #444;
+}
+
 body {
     font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -16,8 +21,10 @@ nav .title{
     font-size: 26px;
 }
 
-nav .links {
-
+nav .title a{
+    color: var(--main-text-color);
+    font-weight: bold;
+    text-decoration: none;
 }
 
 article {

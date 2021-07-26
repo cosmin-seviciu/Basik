@@ -58,6 +58,14 @@ class ArticleService {
     });
     this.articles = tempArticles;
   }
+
+  public getArticleByTitle(title: string): ArticleModel {
+    const article = this.articles.find(
+      (article: ArticleModel) => article.title === title
+    );
+
+    return article || new ArticleModel('', '<h1>404 Article not found</h1>');
+  }
 }
 
 export const articleService = new ArticleService();
