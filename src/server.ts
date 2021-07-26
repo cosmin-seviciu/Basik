@@ -1,51 +1,44 @@
 import express from 'express';
 import { TwingEnvironment, TwingLoaderFilesystem } from 'twing';
-import { articleService } from './services/articleService';
+import { ArticleService } from './services/articleService';
 import { fetchRepoService } from './services/fetchRepoService';
-import { ArticleModel } from './models/articleModel';
+import { ArticleController } from './controllers/articleController';
 
 export class Server {
-  private port: number;
-  private app: express.Application;
-  private loader: any;
-  private twing: TwingEnvironment;
+  private readonly port: number;
+  private readonly app: express.Application;
+  private readonly loader: TwingLoaderFilesystem;
+  private readonly twing: TwingEnvironment;
+  private controller: ArticleController;
+  private articleService: ArticleService;
+
+  public getApplication(): express.Application {
+    return this.app;
+  }
+
+  public getTwingEnvironment(): TwingEnvironment {
+    return this.twing;
+  }
+
+  public getArticleService(): ArticleService {
+    return this.articleService;
+  }
 
   public constructor() {
-    this.app = express();
     this.port = 5000;
-    this.loader = new TwingLoaderFilesystem('./src/view');
+    this.app = express();
+    this.loader = new TwingLoaderFilesystem('./src/views');
     this.twing = new TwingEnvironment(this.loader);
   }
 
-  public createServer(): void {
-    fetchRepoService.getArticlesRepo().then((res) => {
-      articleService.init();
-      this.app.use(express.static(__dirname + '/public'));
-
-      this.app.get('/', (req, res) => {
-        this.twing
-          .render('index.html', { articles: articleService.articles })
-          .then((output) => {
-            res.end(output);
-          });
-      });
-
-      this.app.get('/article/:article', (req, res) => {
-        const article: ArticleModel = articleService.getArticleByTitle(
-          req.params.article
-        );
-        this.twing
-          .render('article.html', {
-            article: articleService.getArticleByTitle(req.params.article),
-          })
-          .then((output) => {
-            res.end(output);
-          });
-      });
-
-      this.app.listen(this.port, () => {
-        console.log('server running on http://localhost:5000/');
-      });
+  public async createServer(): Promise<void> {
+    await fetchRepoService.getArticlesRepo();
+    this.articleService = new ArticleService();
+    this.controller = new ArticleController(this);
+    this.app.use(express.static(__dirname + '/public'));
+    this.controller.register();
+    this.app.listen(this.port, () => {
+      console.log('server running on http://localhost:5000/');
     });
   }
 }

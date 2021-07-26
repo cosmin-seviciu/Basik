@@ -4,6 +4,7 @@
     <main>
         {% for article in articles %}
             <div>{{ article.readableTitle}}</div>
+            <div>{{ article.thumb}}</div>
         {% endfor %}
     </main>
 {% include 'partials/footer.html' %}

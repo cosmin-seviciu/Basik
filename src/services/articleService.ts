@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import showdown from 'showdown';
 import config from '../../basik.config.json';
 
-class ArticleService {
+export class ArticleService {
   private _articles: ArticleModel[] = [];
   private converter: showdown.Converter;
 
@@ -16,10 +16,8 @@ class ArticleService {
   }
 
   constructor() {
-    this.converter = new showdown.Converter();
-  }
 
-  public init() {
+    this.converter = new showdown.Converter();
     this.refeshArticles();
     setInterval(() => {
       this.refeshArticles();
@@ -32,26 +30,29 @@ class ArticleService {
     );
     const tempArticles: ArticleModel[] = [];
     articles.forEach((element: string) => {
-      const filePath = `./${config.repoName}/${config.articlesFolderName}/${element}/index.md`;
+      const filePath = `./${config.repoName}/${config.articlesFolderName}/${element}/`;
+      const contentFilePath = `${filePath}index.md`;
       const foundArticle = this.articles.find(
         (article) => article.title === element
       );
       if (foundArticle) {
-        const stats = fs.statSync(filePath);
+        const stats = fs.statSync(contentFilePath);
         if (stats.mtimeMs != foundArticle.mtime) {
-          const content = fs.readFileSync(filePath, 'utf8');
+          const content = fs.readFileSync(contentFilePath, 'utf8');
           foundArticle.content = this.converter.makeHtml(content);
           foundArticle.mtime = stats.mtimeMs;
         }
         tempArticles.push(foundArticle);
       } else {
-        const stats = fs.statSync(filePath);
-        const content = fs.readFileSync(filePath, 'utf8');
+        const stats = fs.statSync(contentFilePath);
+        const content = fs.readFileSync(contentFilePath, 'utf8');
+        const imageFilePath = this.getThumbPath(filePath);
         tempArticles.push(
           new ArticleModel(
             element,
             this.converter.makeHtml(content),
-            stats.mtimeMs
+            stats.mtimeMs,
+            imageFilePath
           )
         );
       }
@@ -66,6 +67,24 @@ class ArticleService {
 
     return article || new ArticleModel('', '<h1>404 Article not found</h1>');
   }
-}
 
-export const articleService = new ArticleService();
+
+  private getThumbPath(filePath: string): string {
+    const pngFilePath = `${filePath}thumb.png`;
+    const jpgFilePath = `${filePath}thumb.jpg`;
+
+    try {
+      fs.statSync(pngFilePath)
+      return pngFilePath;
+    }
+    catch (ex: unknown) { }
+
+    try {
+      fs.statSync(jpgFilePath)
+      return jpgFilePath;
+    }
+    catch (ex: unknown) { }
+
+    return '';
+  }
+}

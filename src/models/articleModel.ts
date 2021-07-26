@@ -1,14 +1,25 @@
 export class ArticleModel {
-  public readableTitle: string = '';
-  constructor(
-    public title: string = '',
-    public content: string = '',
-    public mtime: number = 0
-  ) {
-    this.readableTitle = this.createReadableTitle();
+  private _readableTitle: string;
+  private _title: string;
+
+  public set title(value: string) {
+    this._title = value;
+    this._readableTitle = value.replace('-', ' ');
+  } 
+
+  public get title(): string {
+    return this._title;
   }
 
-  public createReadableTitle() {
-    return this.title.replace('-', ' ');
+  public get readableTitle(): string {
+    return this._readableTitle;
+  }
+
+  constructor(
+    title: string = '',
+    public content: string = '',
+    public mtime: number = 0,
+    public thumb: string = '') {
+      this.title = title;
   }
 }
