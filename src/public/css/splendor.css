@@ -185,7 +185,7 @@ THE SOFTWARE. */
   p,
   *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p):not(body):not(hr) {
     margin: 1rem auto 1rem;
-    max-width: 36rem;
+    max-width: 38rem;
     padding: .25rem;
   }
   
