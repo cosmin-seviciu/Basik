@@ -1,10 +1,11 @@
 
 {% include 'header.html' %}
-    <main>
+{% include 'partials/nav.html' %}
+    <article>
         <p>
         {% for article in articles %}
             <div>{{ article.content|raw }},</div>
         {% endfor %}
         </p>
-    </main>
+    </article>
 {% include 'footer.html' %}
