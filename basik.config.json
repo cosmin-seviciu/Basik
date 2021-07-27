@@ -2,5 +2,6 @@
     "repoUrl":"https://github.com/ZetCoby/blog-articles.git",
     "repoName":"blog-articles",
     "articlesFolderName": "articles",
+    "refreshTime": 3600000,
     "dev": true
 }

@@ -17,19 +17,24 @@ class FetchRepoService {
     this.git.addRemote('origin', this.remoteRepo);
     setInterval(() => {
       this.getArticlesRepo();
-    }, 3600000);
+    }, config.refreshTime);
   }
 
   public getArticlesRepo(): Promise<any> {
     return new Promise((res, rej) => {
-      console.log(config.dev)
+      console.log(config.dev);
       if (config.dev) {
-        console.log("------------------------------------------------------------------------------------")
-        console.log("Skipping article repo fetch, to fetch the repo set dev to false in basik.config.json")
-        console.log("------------------------------------------------------------------------------------")
-        res(true)
+        console.log(
+          '------------------------------------------------------------------------------------'
+        );
+        console.log(
+          'Skipping article repo fetch, to fetch the repo set dev to false in basik.config.json'
+        );
+        console.log(
+          '------------------------------------------------------------------------------------'
+        );
+        res(true);
         return;
-
       }
       const localFiles = fs.readdirSync('./');
 
@@ -38,7 +43,9 @@ class FetchRepoService {
         res(this.git.clone(this.remoteRepo));
       } else {
         console.log(`git pull ${this.remoteRepo}`);
-        res(this.git.pull());
+        this.git.reset();
+        this.git.cwd(this.remoteRepoName);
+        res(this.git.pull('origin', 'main'));
       }
     });
   }

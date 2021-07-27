@@ -16,12 +16,11 @@ export class ArticleService {
   }
 
   constructor() {
-
     this.converter = new showdown.Converter();
     this.refeshArticles();
     setInterval(() => {
       this.refeshArticles();
-    }, 3600000);
+    }, config.refreshTime);
   }
 
   private refeshArticles(): void {
@@ -68,22 +67,19 @@ export class ArticleService {
     return article || new ArticleModel('', '<h1>404 Article not found</h1>');
   }
 
-
   private getThumbPath(filePath: string): string {
     const pngFilePath = `${filePath}thumb.png`;
     const jpgFilePath = `${filePath}thumb.jpg`;
 
     try {
-      fs.statSync(pngFilePath)
+      fs.statSync(pngFilePath);
       return pngFilePath;
-    }
-    catch (ex: unknown) { }
+    } catch (ex: unknown) {}
 
     try {
-      fs.statSync(jpgFilePath)
+      fs.statSync(jpgFilePath);
       return jpgFilePath;
-    }
-    catch (ex: unknown) { }
+    } catch (ex: unknown) {}
 
     return '';
   }
