@@ -1,9 +1,9 @@
-import { Application, Request, Response } from "express";
-import { TwingEnvironment } from "twing";
+import { Application, Request, Response } from 'express';
+import { TwingEnvironment } from 'twing';
 
-import { Server } from "../server";
-import { ArticleModel } from "../models/articleModel";
-import { ArticleService } from "../services/articleService";
+import { Server } from '../server';
+import { ArticleModel } from '../models/articleModel';
+import { ArticleService } from '../services/articleService';
 
 export class ArticleController {
   private readonly app: Application;
@@ -18,15 +18,20 @@ export class ArticleController {
 
   public register(): void {
     this.app.get('/', this.getArticleList.bind(this));
+    // this.app.get('/refresh', this.getArticleList.bind(this));
     this.app.get('/article/:article', this.getArticle.bind(this));
   }
 
   private async getArticleList(req: Request, res: Response): Promise<void> {
-    res.end(await this.twing.render('index.html', { articles: this.service.articles }));
+    res.end(
+      await this.twing.render('index.html', { articles: this.service.articles })
+    );
   }
 
   private async getArticle(req: Request, res: Response): Promise<void> {
-    const article: ArticleModel = this.service.getArticleByTitle(req.params.article);
-    res.end(await this.twing.render('article.html', { article: article, }));
+    const article: ArticleModel = this.service.getArticleByTitle(
+      req.params.article
+    );
+    res.end(await this.twing.render('article.html', { article: article }));
   }
 }

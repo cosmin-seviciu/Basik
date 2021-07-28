@@ -25,14 +25,14 @@ export class ArticleService {
 
   private refeshArticles(): void {
     const articles = fs.readdirSync(
-      `./${config.repoName}/${config.articlesFolderName}`
+      `./src/${config.repoName}/${config.articlesFolderName}`
     );
     const tempArticles: ArticleModel[] = [];
-    articles.forEach((element: string) => {
-      const filePath = `./${config.repoName}/${config.articlesFolderName}/${element}/`;
+    articles.forEach((articleTitle: string) => {
+      const filePath = `./src/${config.repoName}/${config.articlesFolderName}/${articleTitle}/`;
       const contentFilePath = `${filePath}index.md`;
       const foundArticle = this.articles.find(
-        (article) => article.title === element
+        (article) => article.title === articleTitle
       );
       if (foundArticle) {
         const stats = fs.statSync(contentFilePath);
@@ -45,10 +45,10 @@ export class ArticleService {
       } else {
         const stats = fs.statSync(contentFilePath);
         const content = fs.readFileSync(contentFilePath, 'utf8');
-        const imageFilePath = this.getThumbPath(filePath);
+        const imageFilePath = this.getThumbPath(articleTitle, filePath);
         tempArticles.push(
           new ArticleModel(
-            element,
+            articleTitle,
             this.converter.makeHtml(content),
             stats.mtimeMs,
             imageFilePath
@@ -67,18 +67,18 @@ export class ArticleService {
     return article || new ArticleModel('', '<h1>404 Article not found</h1>');
   }
 
-  private getThumbPath(filePath: string): string {
+  private getThumbPath(articleTitle: string, filePath: string): string {
     const pngFilePath = `${filePath}thumb.png`;
     const jpgFilePath = `${filePath}thumb.jpg`;
 
     try {
       fs.statSync(pngFilePath);
-      return pngFilePath;
+      return `${articleTitle}/thumb.png`;
     } catch (ex: unknown) {}
 
     try {
       fs.statSync(jpgFilePath);
-      return jpgFilePath;
+      return `${articleTitle}/thumb.jpg`;
     } catch (ex: unknown) {}
 
     return '';

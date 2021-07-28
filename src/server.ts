@@ -3,6 +3,7 @@ import { TwingEnvironment, TwingLoaderFilesystem } from 'twing';
 import { ArticleService } from './services/articleService';
 import { fetchRepoService } from './services/fetchRepoService';
 import { ArticleController } from './controllers/articleController';
+import config from '../basik.config.json';
 
 export class Server {
   private readonly port: number;
@@ -35,6 +36,11 @@ export class Server {
     await fetchRepoService.getArticlesRepo();
     this.articleService = new ArticleService();
     this.controller = new ArticleController(this);
+    this.app.use(
+      express.static(
+        `${__dirname}/${config.repoName}/${config.articlesFolderName}/`
+      )
+    );
     this.app.use(express.static(__dirname + '/public'));
     this.controller.register();
     this.app.listen(this.port, () => {

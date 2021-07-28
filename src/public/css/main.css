@@ -7,6 +7,12 @@ body {
     font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
 }
 
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: auto;
+}
+
 nav {
     display: flex;
     width: 100%;
@@ -29,4 +35,34 @@ nav .title a{
 
 article {
     padding: 0 32px;
+}
+
+.article-link {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.article-card {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.article-card.thumb{
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+}
+
+.article-title {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    padding: 16px;
+    font-size: 24px;
+    text-decoration: none;
+    color: var(--main-text-color);
+    text-transform: capitalize;
+    border-top: 2px solid #e1e1e1;
+    width: calc(100% - 32px);
 }

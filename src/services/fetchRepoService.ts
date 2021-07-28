@@ -5,7 +5,7 @@ import config from '../../basik.config.json';
 class FetchRepoService {
   private git: SimpleGit;
   private options: Partial<SimpleGitOptions> = {
-    baseDir: process.cwd(),
+    baseDir: process.cwd() + '/src/',
     binary: 'git',
     maxConcurrentProcesses: 6,
   };
@@ -22,7 +22,6 @@ class FetchRepoService {
 
   public getArticlesRepo(): Promise<any> {
     return new Promise((res, rej) => {
-      console.log(config.dev);
       if (config.dev) {
         console.log(
           '------------------------------------------------------------------------------------'
@@ -36,7 +35,7 @@ class FetchRepoService {
         res(true);
         return;
       }
-      const localFiles = fs.readdirSync('./');
+      const localFiles = fs.readdirSync('./src/');
 
       if (!localFiles.find((file) => file === this.remoteRepoName)) {
         console.log(`git clone ${this.remoteRepo}`);
@@ -44,7 +43,7 @@ class FetchRepoService {
       } else {
         console.log(`git pull ${this.remoteRepo}`);
         this.git.reset();
-        this.git.cwd(this.remoteRepoName);
+        this.git.cwd('src/' + this.remoteRepoName);
         res(this.git.pull('origin', 'main'));
       }
     });
