@@ -1,4 +1,3 @@
-.splendor {
 
     /* The MIT License (MIT)
 
@@ -28,7 +27,7 @@
     /* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
     /* Counteract the specificity of the gross *:not() chain. */
     /*  === End gross hack */
-  }
+ 
 
   .splendor a,
   .splendor a:visited {
