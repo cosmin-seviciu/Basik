@@ -10,7 +10,7 @@ Basik is a small blog site that uses a github repo as the article database for i
 
 In `basik.config.json`
 
-```json
+```js
 {
   "repoUrl": "github repo url",
   "repoName": "blog-articles",
