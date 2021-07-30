@@ -18,7 +18,7 @@ export class ArticleController {
 
   public register(): void {
     this.app.get('/', this.getArticleList.bind(this));
-    // this.app.get('/refresh', this.getArticleList.bind(this));
+    this.app.get('/privacy', this.getPolicyPrivacy.bind(this));
     this.app.get('/article/:article', this.getArticle.bind(this));
   }
 
@@ -33,5 +33,9 @@ export class ArticleController {
       req.params.article
     );
     res.end(await this.twing.render('article.html', { article: article }));
+  }
+
+  private async getPolicyPrivacy(req: Request, res: Response): Promise<void> {
+    res.end(await this.twing.render('privacy.html'));
   }
 }

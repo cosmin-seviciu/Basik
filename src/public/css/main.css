@@ -1,22 +1,98 @@
 
 :root {
     --main-text-color: #444;
+    --container-width: 1280px;
+}
+
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ------------------------------------------------------------------------- */
+
+
+html,body {
+    font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-    font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
+    opacity: 0;
+    
+}
+
+a {
+    color: var(--main-text-color)
+}
+
+a:hover {
+    color: #2980b9 !important;
+}
+
+hr {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    transition: all 0.2s;
+}
+
+.visible {
+    opacity: 1;
+    transition: opacity 0.3s;
 }
 
 .container {
-    max-width: 1400px;
+    box-sizing: border-box;
+    max-width: var(--container-width);
     width: 100%;
     margin: auto;
+    padding: 24px;
 }
 
 nav {
+    box-sizing: border-box;
     display: flex;
     width: 100%;
-    padding: 16px;
     border-bottom: 1px solid #e1e1e1;
 }
 
@@ -29,40 +105,57 @@ nav .title{
 
 nav .title a{
     color: var(--main-text-color);
-    font-weight: bold;
+    font-weight: 900;
     text-decoration: none;
 }
 
-article {
-    padding: 0 32px;
+.article-list {
+    margin-top: 20px
+}
+
+.article-wrapper:hover hr{
+    width:85%;
+}
+
+.article {
+    margin: 18px auto;
+    max-width: 750px;
+    font-weight: 900;
 }
 
 .article-link {
-    display: block;
-    margin: 0;
-    padding: 0;
-}
-
-.article-card {
-    position: relative;
-    margin-bottom: 40px;
-}
-
-.article-card.thumb{
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-}
-
-.article-title {
-    position: absolute;
-    bottom: 0;
-    background: #fff;
-    padding: 16px;
-    font-size: 24px;
     text-decoration: none;
     color: var(--main-text-color);
-    text-transform: capitalize;
-    border-top: 2px solid #e1e1e1;
-    width: calc(100% - 32px);
+    font-size: 24px;
+    line-height: 36px;
 }
+
+@media (min-width: 576px) { 
+    .article-link {
+        font-size: 32px;
+        line-height: 44px;
+    }
+
+    .article {
+        margin: 24px auto;
+    }
+}
+
+.article-title:first-letter{
+    text-transform: capitalize
+}
+
+footer {
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.footer-content>*{
+    margin: 16px;
+}
+

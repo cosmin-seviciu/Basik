@@ -1,21 +1,16 @@
 
 {% include 'partials/header.html' %}
 {% include 'partials/nav.html' %}
-    <main>  
+    <main class="container article-list">  
         {% for article in articles %}
-            {% if article.thumb %}
+        <div class="article-wrapper">
+            <div class="article">
                 <a class="article-link" href="/article/{{article.title}}">
-                    <div class="article-card thumb" style="background-image: url('{{ article.thumb}}')">
-                        <div class = "article-title">{{ article.readableTitle}}</div>
-                    </div>
+                    <div class = "article-title">{{ article.readableTitle}}</div>
                 </a>
-            {% else %}
-                <a class="article-link" href="/article/{{article.title}}">
-                    <div class="article-card">
-                        <div class = "article-title">{{ article.readableTitle}}</div>
-                    </div>
-                </a>
-            {% endif %}
+            </div>
+            <hr/>
+        </div>
         {% endfor %}
     </main>
 {% include 'partials/footer.html' %}

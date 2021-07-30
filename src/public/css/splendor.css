@@ -1,245 +1,169 @@
-/* The MIT License (MIT)
+.splendor {
 
-Copyright (c) 2014-2015 John Otander
+    /* The MIT License (MIT)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+    Copyright (c) 2014-2015 John Otander
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE. */
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. */
-@media print {
-    *,
-    *:before,
-    *:after {
-      background: transparent !important;
-      color: #000 !important;
-      box-shadow: none !important;
-      text-shadow: none !important;
-    }
-  
-    a,
-    a:visited {
-      text-decoration: underline;
-    }
-  
-    a[href]:after {
-      content: " (" attr(href) ")";
-    }
-  
-    abbr[title]:after {
-      content: " (" attr(title) ")";
-    }
-  
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-      content: "";
-    }
-  
-    pre,
-    blockquote {
-      border: 1px solid #999;
-      page-break-inside: avoid;
-    }
-  
-    thead {
-      display: table-header-group;
-    }
-  
-    tr,
-    img {
-      page-break-inside: avoid;
-    }
-  
-    img {
-      max-width: 100% !important;
-    }
-  
-    p,
-    h2,
-    h3 {
-      orphans: 3;
-      widows: 3;
-    }
-  
-    h2,
-    h3 {
-      page-break-after: avoid;
-    }
+
+    /* https://github.com/mrmrs/fluidity */
+    /* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
+    /* Counteract the specificity of the gross *:not() chain. */
+    /*  === End gross hack */
   }
-  
-  html {
-    font-size: 12px;
+
+  .splendor a,
+  .splendor a:visited {
+    text-decoration: underline;
   }
-  
-  @media screen and (min-width: 32rem) and (max-width: 48rem) {
-    html {
-      font-size: 15px;
-    }
+   .splendor a[href^="#"]:after,
+  .splendor a[href^="javascript:"]:after {
+    content: "";
   }
-  
-  @media screen and (min-width: 48rem) {
-    html {
-      font-size: 16px;
-    }
+  .splendor pre,
+  .splendor blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
   }
-  
-  body {
-    line-height: 1.85;
+  .splendor thead {
+    display: table-header-group;
   }
-  
-  p,
-  .splendor-p {
+  .splendor tr,
+  .splendor img {
+    page-break-inside: avoid;
+  }
+  .splendor img {
+    max-width: 100% !important;
+  }
+  .splendor p,
+  .splendor h2,
+  .splendor h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  .splendor h2,
+  .splendor h3 {
+    page-break-after: avoid;
+  }
+  .splendor p,
+  .splendor .splendor-p {
     font-size: 1rem;
     margin-bottom: 1.3rem;
   }
-  
-  h1,
-  .splendor-h1,
-  h2,
-  .splendor-h2,
-  h3,
-  .splendor-h3,
-  h4,
-  .splendor-h4 {
-    margin: 1.414rem 0 .5rem;
+  .splendor h1,
+  .splendor .splendor-h1,
+  .splendor h2,
+  .splendor .splendor-h2,
+  .splendor h3,
+  .splendor .splendor-h3,
+  .splendor h4,
+  .splendor .splendor-h4 {
+    margin: 1.414rem 0 0.5rem;
     font-weight: inherit;
     line-height: 1.42;
   }
-  
-  h1,
-  .splendor-h1 {
+  .splendor h1,
+  .splendor .splendor-h1 {
     margin-top: 0;
     font-size: 3.998rem;
+    font-weight: 900;
   }
-  
-  h2,
-  .splendor-h2 {
+  .splendor h2,
+  .splendor .splendor-h2 {
     font-size: 2.827rem;
   }
-  
-  h3,
-  .splendor-h3 {
+  .splendor h3,
+  .splendor .splendor-h3 {
     font-size: 1.999rem;
   }
-  
-  h4,
-  .splendor-h4 {
+  .splendor h4,
+  .splendor .splendor-h4 {
     font-size: 1.414rem;
   }
-  
-  h5,
-  .splendor-h5 {
+  .splendor h5,
+  .splendor .splendor-h5 {
     font-size: 1.121rem;
   }
-  
-  h6,
-  .splendor-h6 {
-    font-size: .88rem;
+  .splendor h6,
+  .splendor .splendor-h6 {
+    font-size: 0.88rem;
   }
-  
-  small,
-  .splendor-small {
-    font-size: .707em;
+  .splendor small,
+  .splendor .splendor-small {
+    font-size: 0.707em;
   }
-  
-  /* https://github.com/mrmrs/fluidity */
-  
-  img,
-  canvas,
-  iframe,
-  video,
-  svg,
-  select,
-  textarea {
+  .splendor img,
+  .splendor canvas,
+  .splendor iframe,
+  .splendor video,
+  .splendor svg,
+  .splendor select,
+  .splendor textarea {
     max-width: 100%;
   }
-  
-  @import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
-  
-  html {
-    font-size: 18px;
-    max-width: 100%;
-  }
-  
-  body {
-    color: #444;
-    font-family: 'Merriweather', Georgia, serif;
-    margin: 0;
-    max-width: 100%;
-  }
-  
-  /* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
-  
-  p,
-  *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p):not(body):not(hr):not(nav) {
+  .splendor p,
+  .splendor *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p):not(code):not(hr) {
     margin: 1rem auto 1rem;
-    max-width: 38rem;
-    padding: .25rem;
+    max-width: 36rem;
+    padding: 0.25rem;
   }
-  
-  div {
+  .splendor div {
     width: 100%;
   }
-
-  
-  blockquote p {
+  .splendor div img {
+    width: 100%;
+  }
+  .splendor blockquote p {
     font-size: 1.5rem;
     font-style: italic;
     margin: 1rem auto 1rem;
     max-width: 48rem;
-    border-left: 5px solid #444444;
-    padding-left: 1rem;
   }
-  
-  li {
+  .splendor li {
     margin-left: 2rem;
   }
-  
-  /* Counteract the specificity of the gross *:not() chain. */
-  
-  h1 {
+  .splendor h1 {
     padding: 4rem 0 !important;
   }
-  
-  /*  === End gross hack */
-  
-  p {
+  .splendor p {
     color: #555;
     height: auto;
     line-height: 1.45;
   }
-  
-  pre,
-  code {
+  .splendor pre,
+  .splendor code {
     font-family: Menlo, Monaco, "Courier New", monospace;
   }
-  
-  pre {
+  .splendor pre {
     background-color: #fafafa;
-    font-size: .8rem;
+    font-size: 0.8rem;
     overflow-x: scroll;
     padding: 1.125em;
   }
-  
-  a,
-  a:visited {
+  .splendor a,
+  .splendor a:visited {
     color: #3498db;
   }
-  
-  a:hover,
-  a:focus,
-  a:active {
+  .splendor a:hover,
+  .splendor a:focus,
+  .splendor a:active {
     color: #2980b9;
   }

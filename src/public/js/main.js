@@ -1,7 +1,8 @@
 (function () {
 
-    clearEmptyTags()
+    clearEmptyTags();
     fixInlineCode();
+    makeSiteVisible();
 
     function clearEmptyTags(){
         const elems = [...document.body.getElementsByTagName("p")]
@@ -21,6 +22,13 @@
                 el.setAttribute("class", "language-markup")
             }
         })
+    }
+
+    function makeSiteVisible() {
+        setTimeout(() => {
+            document.querySelector("body").classList.add("visible")
+        }, 300)
+        
     }
 
 }());
