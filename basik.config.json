@@ -3,5 +3,5 @@
     "repoName":"blog-articles",
     "articlesFolderName": "articles",
     "refreshTime": 3600000,
-    "dev": false
+    "dev": true
 }

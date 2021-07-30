@@ -21,13 +21,11 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE. */
 
+    /* this file was modified a lot for our needs, the original can be found here https://github.com/markdowncss/splendor */
 
-
-    /* https://github.com/mrmrs/fluidity */
-    /* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
-    /* Counteract the specificity of the gross *:not() chain. */
-    /*  === End gross hack */
- 
+  .splendor * {
+    line-height: 1.5em;
+  }
 
   .splendor a,
   .splendor a:visited {
@@ -39,9 +37,11 @@
   }
   .splendor pre,
   .splendor blockquote {
-    border: 1px solid #999;
+    border-left:6px solid #272822;
+    margin-left: 16px;
     page-break-inside: avoid;
   }
+
   .splendor thead {
     display: table-header-group;
   }
@@ -119,10 +119,13 @@
     max-width: 100%;
   }
   .splendor p,
-  .splendor *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p):not(code):not(hr) {
-    margin: 1rem auto 1rem;
-    max-width: 36rem;
+  .splendor *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p):not(code):not(hr):not(span) {
+    margin: 10px auto;
+    /* max-width: 54rem; */
     padding: 0.25rem;
+  }
+  .splendor li {
+    margin: 8px 2rem;
   }
   .splendor div {
     width: 100%;
@@ -133,14 +136,14 @@
   .splendor blockquote p {
     font-size: 1.5rem;
     font-style: italic;
-    margin: 1rem auto 1rem;
+    margin: 1rem 16px 1rem;
     max-width: 48rem;
   }
   .splendor li {
     margin-left: 2rem;
   }
   .splendor h1 {
-    padding: 4rem 0 !important;
+    padding-bottom: 4rem !important;
   }
   .splendor p {
     color: #555;
@@ -150,11 +153,12 @@
   .splendor pre,
   .splendor code {
     font-family: Menlo, Monaco, "Courier New", monospace;
+    font-size: 14px !important;
   }
   .splendor pre {
     background-color: #fafafa;
     font-size: 0.8rem;
-    overflow-x: scroll;
+    overflow-x: auto;
     padding: 1.125em;
   }
   .splendor a,

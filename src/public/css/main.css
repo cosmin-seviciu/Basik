@@ -1,7 +1,9 @@
 
 :root {
-    --main-text-color: #444;
-    --container-width: 1280px;
+    --article-text-color: #444;
+    --site-text-color: #262626;
+    --main-site-color: #fff;
+    --container-width: 992px;
 }
 
 
@@ -57,11 +59,12 @@ html,body {
 
 body {
     opacity: 0;
-    
+    background: var(--main-site-color);
 }
 
 a {
-    color: var(--main-text-color)
+    color: var(--site-text-color);
+    text-decoration: none;
 }
 
 a:hover {
@@ -86,7 +89,7 @@ hr {
     max-width: var(--container-width);
     width: 100%;
     margin: auto;
-    padding: 24px;
+    padding: 32px;
 }
 
 nav {
@@ -94,19 +97,51 @@ nav {
     display: flex;
     width: 100%;
     border-bottom: 1px solid #e1e1e1;
+    color: var(--site-text-color);
 }
 
-nav .title{
+nav .title {
     width: 100%;
     padding: 0;
     margin: 0;
     font-size: 26px;
 }
 
-nav .title a{
-    color: var(--main-text-color);
+nav .title a {
+    color: var(--site-text-color);
     font-weight: 900;
     text-decoration: none;
+}
+
+nav .title a:hover {
+    color: var(--site-text-color) !important;
+}
+
+.main-section {
+    background: #fff;
+}
+
+@media (min-width: 992px) { 
+    .img-header {
+        background-image: url("/img/img1.png");
+        background-repeat: repeat;
+        height: 60vh;
+        width: 100%;
+        margin-bottom: -50vh;
+    }
+
+    .img-header::after {
+        display: block;
+        content: "";
+        height: 60vh;
+        background: rgb(255,255,255);
+        background: linear-gradient(0deg, var(--main-site-color) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .main-section {
+        border-radius: 5px;
+        border: 1px solid #e1e1e1;
+    }
 }
 
 .article-list {
@@ -125,7 +160,7 @@ nav .title a{
 
 .article-link {
     text-decoration: none;
-    color: var(--main-text-color);
+    color: var(--article-text-color);
     font-size: 24px;
     line-height: 36px;
 }
@@ -147,12 +182,13 @@ nav .title a{
 
 footer {
     margin-top: auto;
+    color: var(--site-text-color)
 }
 
 .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .footer-content>*{
