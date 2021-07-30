@@ -5,7 +5,7 @@ export class ArticleModel {
   public set title(value: string) {
     this._title = value;
     this._readableTitle = value.replace('-', ' ');
-  } 
+  }
 
   public get title(): string {
     return this._title;
@@ -18,8 +18,12 @@ export class ArticleModel {
   constructor(
     title: string = '',
     public content: string = '',
-    public mtime: number = 0,
-    public thumb: string = '') {
-      this.title = title;
+    public modifiedTimeUnix: number = 0,
+    public thumb: string = '',
+    public createDateUnix: number = 0,
+    public author: string = '',
+    public tags: string[] = []
+  ) {
+    this.title = title;
   }
 }

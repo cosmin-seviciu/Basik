@@ -31,27 +31,32 @@ export class ArticleService {
     articles.forEach((articleTitle: string) => {
       const filePath = `./src/${config.repoName}/${config.articlesFolderName}/${articleTitle}/`;
       const contentFilePath = `${filePath}index.md`;
+      const metaFilePath = `${filePath}meta.json`;
       const foundArticle = this.articles.find(
         (article) => article.title === articleTitle
       );
       if (foundArticle) {
         const stats = fs.statSync(contentFilePath);
-        if (stats.mtimeMs != foundArticle.mtime) {
+        if (stats.mtimeMs != foundArticle.modifiedTimeUnix) {
           const content = fs.readFileSync(contentFilePath, 'utf8');
           foundArticle.content = this.converter.makeHtml(content);
-          foundArticle.mtime = stats.mtimeMs;
+          foundArticle.modifiedTimeUnix = stats.mtimeMs;
         }
         tempArticles.push(foundArticle);
       } else {
         const stats = fs.statSync(contentFilePath);
         const content = fs.readFileSync(contentFilePath, 'utf8');
+        const meta = JSON.parse(fs.readFileSync(metaFilePath, 'utf8'));
         const imageFilePath = this.getThumbPath(articleTitle, filePath);
         tempArticles.push(
           new ArticleModel(
             articleTitle,
             this.converter.makeHtml(content),
             stats.mtimeMs,
-            imageFilePath
+            imageFilePath,
+            meta.createDateUnix,
+            meta.author,
+            meta.tags
           )
         );
       }
