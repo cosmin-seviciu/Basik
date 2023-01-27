@@ -21,7 +21,7 @@
     "bootstrap": "^5.0.2",
     "express": "^4.17.1",
     "showdown": "^1.9.1",
-    "simple-git": "^2.41.1",
+    "simple-git": "^3.16.0",
     "twing": "^5.0.2"
   },
   "devDependencies": {
