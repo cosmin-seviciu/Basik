@@ -1,5 +1,6 @@
 export class ArticleModel {
   private _readableTitle: string;
+
   private _title: string;
 
   public set title(value: string) {
@@ -22,7 +23,7 @@ export class ArticleModel {
     public thumb: string = '',
     public createDateUnix: number = 0,
     public author: string = '',
-    public tags: string[] = []
+    public tags: string[] = [],
   ) {
     this.title = title;
   }

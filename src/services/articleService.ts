@@ -1,10 +1,11 @@
-import { ArticleModel } from '../models/articleModel';
 import * as fs from 'fs';
 import showdown from 'showdown';
+import { ArticleModel } from '../models/articleModel';
 import config from '../../basik.config.json';
 
 export class ArticleService {
   private _articles: ArticleModel[] = [];
+
   private converter: showdown.Converter;
 
   public get articles(): ArticleModel[] {
@@ -17,13 +18,13 @@ export class ArticleService {
 
   constructor() {
     this.converter = new showdown.Converter();
-    this.refeshArticles();
+    this.refreshArticles();
     setInterval(() => {
-      this.refeshArticles();
+      this.refreshArticles();
     }, config.refreshTime);
   }
 
-  private refeshArticles(): void {
+  private refreshArticles(): void {
     const articles = fs.readdirSync(
       `./src/${config.repoName}/${config.articlesFolderName}`
     );

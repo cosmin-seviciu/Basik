@@ -2,15 +2,20 @@ import express from 'express';
 import { TwingEnvironment, TwingLoaderFilesystem } from 'twing';
 import { ArticleService } from './services/articleService';
 import { fetchRepoService } from './services/fetchRepoService';
-import { ArticleController } from './controllers/articleController';
+import ArticleController from './controllers/articleController';
 import config from '../basik.config.json';
 
 export class Server {
   private readonly port: number;
+
   private readonly app: express.Application;
+
   private readonly loader: TwingLoaderFilesystem;
+
   private readonly twing: TwingEnvironment;
+
   private controller: ArticleController;
+
   private articleService: ArticleService;
 
   public getApplication(): express.Application {
@@ -41,7 +46,7 @@ export class Server {
         `${__dirname}/${config.repoName}/${config.articlesFolderName}/`
       )
     );
-    this.app.use(express.static(__dirname + '/public'));
+    this.app.use(express.static(`${__dirname}/public`));
     this.controller.register();
     this.app.listen(this.port, () => {
       console.log('server running on http://localhost:5000/');

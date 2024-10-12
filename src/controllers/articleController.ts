@@ -5,9 +5,11 @@ import { Server } from '../server';
 import { ArticleModel } from '../models/articleModel';
 import { ArticleService } from '../services/articleService';
 
-export class ArticleController {
+export default class ArticleController {
   private readonly app: Application;
+
   private readonly twing: TwingEnvironment;
+
   private readonly service: ArticleService;
 
   public constructor(server: Server) {
@@ -32,7 +34,7 @@ export class ArticleController {
     const article: ArticleModel = this.service.getArticleByTitle(
       req.params.article
     );
-    res.end(await this.twing.render('article.html', { article: article }));
+    res.end(await this.twing.render('article.html', { article }));
   }
 
   private async getPolicyPrivacy(req: Request, res: Response): Promise<void> {

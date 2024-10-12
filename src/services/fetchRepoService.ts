@@ -4,16 +4,20 @@ import config from '../../basik.config.json';
 
 class FetchRepoService {
   private git: SimpleGit;
+
   private options: Partial<SimpleGitOptions> = {
-    baseDir: process.cwd() + '/src/',
+    baseDir: `${process.cwd()}/src/`,
     binary: 'git',
     maxConcurrentProcesses: 6,
   };
+
   private remoteRepo: string = config.repoUrl;
+
   private remoteRepoName: string = config.repoName;
 
   constructor() {
     this.git = simpleGit(this.options);
+
     this.git.addRemote('origin', this.remoteRepo);
     setInterval(() => {
       this.getArticlesRepo();
@@ -21,7 +25,7 @@ class FetchRepoService {
   }
 
   public getArticlesRepo(): Promise<any> {
-    return new Promise((res, rej) => {
+    return new Promise((res) => {
       if (config.dev) {
         console.log(
           '------------------------------------------------------------------------------------'
@@ -43,7 +47,7 @@ class FetchRepoService {
       } else {
         console.log(`git pull ${this.remoteRepo}`);
         this.git.reset();
-        this.git.cwd('src/' + this.remoteRepoName);
+        this.git.cwd(`src/${this.remoteRepoName}`);
         res(this.git.pull('origin', 'main'));
       }
     });
