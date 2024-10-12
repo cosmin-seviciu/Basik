@@ -1,0 +1,16 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "../vendor/prism.scss";
+@import "../vendor/splendor.scss";
+
+
+:root {
+
+}
+
+html,
+body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, sans-serif;
+}
