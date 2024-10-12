@@ -29,4 +29,4 @@ The articles need and must have the following structure:
 
 ## Start te project
 
-`npm start`
+`npm run dev`
